@@ -1,0 +1,4 @@
+"use strict";
+
+var testFunc = function testFunc() {};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2NsaWVudC9hcHAuanN4Il0sIm5hbWVzIjpbInRlc3RGdW5jIl0sIm1hcHBpbmdzIjoiOztBQUFBLElBQU1BLFdBQVcsU0FBWEEsUUFBVyxHQUFNLENBQUUsQ0FBekIiLCJmaWxlIjoiYXBwLmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgdGVzdEZ1bmMgPSAoKSA9PiB7fTsiXX0=

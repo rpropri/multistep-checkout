@@ -1,0 +1,27 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "test for react",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpropri/multistep-checkout.git"
+  },
+  "scripts": {
+    "start": "babel client --out-dir public --presets=env,react --source-maps inline --watch"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "babel-preset-env": "^1.7.0",
+    "jquery": "^2.2.1",
+    "node": "^12.1.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-core": "^6.26.3",
+    "babel-plugin-react": "1.0.0",
+    "babel-preset-react": "^6.24.1"
+  }
+}
