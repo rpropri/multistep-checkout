@@ -4,7 +4,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       phase: 0,
-      fullname: '',
+      name: '',
       email: '',
       password: '',
       line1: '',
@@ -13,22 +13,28 @@ class App extends React.Component {
       state: '',
       zip: '',
       phone: '',
-      CC: '',
+      cc: '',
       expiry: '',
-      CVV: '',
+      cvv: '',
       billZip: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.nextStep = this.nextStep.bind(this);
+    this.createPurchase = this.createPurchase.bind(this);
   }
   render() {
+    let phase = this.state.phase;
     return (
       <div>
-        {this.state.phase === 0 ? <div /> :
-        this.state.phase === 1 ? <F1 handleChange={this.handleChange} /> :
-        this.state.phase === 2 ? <F2 handleChange={this.handleChange} /> :
-        this.state.phase === 3 ? <F3 handleChange={this.handleChange} /> : <div />}
-        <input type="submit" value={this.state.phase === 0 ? "Purchase" : "continue"} onClick={this.nextStep}></input>
+        {phase === 0 ? <div /> :
+        phase === 1 ? <F1 handleChange={this.handleChange} /> :
+        phase === 2 ? <F2 handleChange={this.handleChange} /> :
+        phase === 3 ? <F3 handleChange={this.handleChange} /> :
+        phase === 4 ? <F4 state={this.state} createPurchase={this.createPurchase}/> : <div />}
+        <input 
+          type="submit" 
+          value={phase === 0 ? "Checkout" :
+        phase <= 3 ? "Continue" : "Review Order"} onClick={this.nextStep}></input>
       </div>
     );
   }
@@ -37,16 +43,16 @@ class App extends React.Component {
     const target = e.target;
     const value = target.value;
     const name = target.name;
-    
-    // console.log(name, value);
     this.setState({[name]: value});
   }
   nextStep(e) {
-    // console.log('event ');
     e.preventDefault();
     let phase = this.state.phase + 1;
     this.setState({phase});
-    console.log(this.state)
+  }
+  createPurchase(e) {
+    e.preventDefault();
+    console.log('do database stuff');
   }
 };
   
@@ -56,7 +62,7 @@ const F1 = (props) => {
     <label>full name:</label>
     <input 
       type="text"
-      name="fullname"
+      name="name"
       onChange={props.handleChange}>
     </input><br></br>
     <label>email address:</label>
@@ -123,7 +129,7 @@ const F3 = (props) => {
       <label>credit card number:</label>
       <input 
         type="text" 
-        name="CC"
+        name="cc"
         onChange={props.handleChange}>
       </input><br></br>
       <label>expiration date:</label>
@@ -141,10 +147,28 @@ const F3 = (props) => {
       <label>billing zip code:</label>
       <input 
         type="text" 
-        name="bill-zip"
+        name="billZip"
         onChange={props.handleChange}>
       </input><br></br>
   </form>
 )};
+
+const F4 = (props) => {
+  let state = props.state;
+  return (
+    <div>
+      <ul id="review">
+        <li><label>Name: </label>{state.name}</li>
+        <li><label>email: </label>{state.email}</li>
+        <li><label>Etc. </label>etc.</li>
+      </ul>
+      <input 
+        type="submit" 
+        onClick={props.createPurchase} 
+        value="Purchase">
+      </input>
+    </div>
+  )
+};
 
 ReactDOM.render(<App />, document.getElementById('app'));
